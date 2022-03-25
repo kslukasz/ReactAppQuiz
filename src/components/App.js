@@ -1,107 +1,135 @@
-import React, { useState, useEffect } from 'react';
-import ShowList from './ShowList.js';
-import FiltratedList from './FiltratedList.js'
-import Header from './Header.js';
-import ButtonsFilter from './ButtonsFilter.js'
-import Title from './Title.js';
+import React, { Component } from 'react';
+import Game from './Game.js'
+import Result from './Result.js'
 import './App.css';
+const API = "data/quiz.json";
 
-const App = () => {
-  const [list, setList] = useState([]);
-  const [buttons, setButtons] = useState({
-    noFilter: true,
-    newOne: null,
-    priority: null,
-    search: "",
-  });
-  const [storageTest, setStorageTest] = useState(false)
+class App extends Component {
+  state = {
+    quest: ["", ""],
+    userAnswerFromGame: [],
+    currentPage: 1,
+    numberOfQuestions: 5,
+    loadedData: false,
+    loadedError: "Ładowanie danych, poczekaj lub odśwież stronę"
 
-  const handleAddElement = (element) => {
-    if ((element.content).trim() !== "") {
-      const copyList = [...list];
-      copyList.unshift(element);
-      setList(copyList);
-      saveLocalStorage(copyList);
+  }
+
+  createHeaderContent() { //funkcja tworzy nagłówek i wyświetla numer pytania, tylko jeśli numer strony nie jest większy od currentPage
+    const { quest, currentPage } = this.state;
+    if (currentPage > quest.length) {
+      return "Wyniki"
+    } else if (!this.state.loadedData) {
+      return "Ładowanie..."
+    } else {
+      const result = `Pytanie ${currentPage} z ${quest.length}`;
+      return result;
     }
   }
-
-  const handleClickDelete = (element) => {
-    const copyList = [...list];
-    const index = copyList.findIndex((e) => e.id === element);
-    copyList.splice(index, 1);
-    setList(copyList);
-    saveLocalStorage(copyList);
+  updateCurrentPage = (page) => { //aktualizuje currentPage (z komponentu Game)
+    this.setState({
+      currentPage: page
+    })
   }
-
-  const handleCheckbox = (element) => {
-    const copyList = [...list];
-    const index = copyList.findIndex((e) => e.id === element);
-    copyList[index].checked = !copyList[index].checked;
-    setList(copyList);
-    saveLocalStorage(copyList);
+  updateAnswerFromGame = (answers) => { // jw dla odpowiedzi użytkownika
+    this.setState({
+      userAnswerFromGame: answers
+    })
   }
-
-  const handleFilter = (element) => {
-    setButtons(element);
+  reset = () => {
+    this.setState({
+      userAnswerFromGame: [],
+      currentPage: 1,
+      loadedData: false,
+      loadedError: "Ładowanie danych, poczekaj lub odśwież stronę"
+    });
+    this.fetchData();
   }
-
-  const handleSearch = (element) => {
-    const copyButtons = { ...buttons };
-    copyButtons.search = element.target.value
-    setButtons(copyButtons);
+  randomQuest = (allQuest, end) => { //losowanie pytań , każde pytanie jest inne
+    let i = 0;
+    const resultTable = [];
+    while (i < end) {
+      i++;
+      const index = Math.floor(Math.random() * (allQuest.length));
+      const element = allQuest.splice(index, 1);
+      resultTable.push(element[0]);
+    } return resultTable
   }
-
-  function testLocalStorage() {
-    try {
-      localStorage.setItem("test", "test");
-      localStorage.removeItem("test");
-      return true;
-    } catch (event) {
-      return false;
-    }
+  fetchData = () => { //pobieranie danych z pliku .json
+    fetch(API)
+      .then(response => response.json())
+      .then(data => {
+        const allQuest = data.quest;
+        const result = this.randomQuest(allQuest, this.state.numberOfQuestions);
+        // console.log(allQuest,result)       
+        this.setState({
+          loadedData: true,
+          quest: result
+        });
+      })
+      .catch(() => {
+        this.setState({
+          loadedError: "Ups, coś poszło nie tak...", //wyświetlanie błędu
+        })
+      })
   }
-
-  function saveLocalStorage(copyList) {
-    if (storageTest) {
-      localStorage.setItem("dataList", JSON.stringify(copyList))
-    }
+  componentDidMount() {
+    this.fetchData()
   }
-
-
-  useEffect(() => {
-    const testResult = testLocalStorage();
-    const storageList = JSON.parse(localStorage.getItem("dataList"));
-    if (testResult && storageList !== null) {
-      setList(storageList);
-    }
-    setStorageTest(testResult);
-  }, [])
-
-  return (
-    <>
-      <div className="box">
-        <Header
-          listLength={list.length}
-          handleAddElement={handleAddElement} />
-        <ButtonsFilter
-          handleFilter={handleFilter}
-          handleSearch={handleSearch}
-          buttons={buttons} />
+  render() {
+    const { quest, userAnswerFromGame, currentPage } = this.state;    
+    const header = (<>
+      <div className='header'>
+        <div>{this.createHeaderContent()}</div>
+        <div style={{ display: "none" }}>menu</div>
       </div>
-      <Title content="Zadania do wykonia" />
-      <ShowList
-        checked={false}
-        list={FiltratedList(list, buttons)}
-        handleCheckbox={handleCheckbox}
-        handleClickDelete={handleClickDelete} />
-      <Title content="Zadania wykonane" />
-      <ShowList
-        checked={true}
-        list={FiltratedList(list, buttons)}
-        handleCheckbox={handleCheckbox}
-        handleClickDelete={handleClickDelete} />
-    </>
-  );
+      <div> <hr /></div>
+    </>);
+    let contentPage= "";
+      if (currentPage > quest.length){
+        contentPage= (<Result //render komponentu Result
+          quest={quest}
+          answer={userAnswerFromGame}
+          reset={this.reset}
+        />)
+      } else if (this.state.loadedData) {
+        contentPage = (<Game //render komponentu Game
+          quest={quest}
+          currentPage={currentPage}
+          updateCurrentPage={this.updateCurrentPage}
+          updateAnswerFromGame={this.updateAnswerFromGame}
+        />)
+      } else {contentPage = this.state.loadedError}
+    return (
+      <>
+        <div className='contener'>
+          {header}
+          {contentPage}
+
+
+          {/* alternatywny kod, działa tak samo ale mniej czytelny  */}
+          {/* <div className='header'>
+            <div>{this.createHeaderContent()}</div>
+            <div style={{display:"none"}}>menu</div>
+          </div>
+          <div> <hr /></div>
+          {(currentPage > quest.length) ?
+            <Result //render komponentu Result
+              quest={quest}
+              answer={userAnswerFromGame}
+              reset={this.reset}
+            />
+            : this.state.loadedData ? <Game //render komponentu Game
+              quest={quest}
+              currentPage={currentPage}
+              updateCurrentPage={this.updateCurrentPage}
+              updateAnswerFromGame={this.updateAnswerFromGame}
+            />
+              : this.state.loadedError} */}
+        </div>
+      </>
+    );
+  }
 }
 
 export default App;

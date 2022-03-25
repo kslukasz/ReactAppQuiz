@@ -1,0 +1,49 @@
+div {
+  font-size: 20px;
+}
+.title{
+  padding: 15px 5px;
+}
+.quest {
+  display: flex;
+  flex-direction: column;   
+  gap:10px
+}
+.answer {
+  padding: 5px;
+  background-color: rgb(211, 211, 211);  
+  border-radius: 4px;  
+  transition-duration: 0.2s;
+}
+.answer:hover{
+  box-shadow: 0 0 6px 0px rgb(0, 2, 87);
+  cursor: pointer;
+}
+.contener div .next{
+  font-size: 20px;
+  padding: 10px 20px;
+  background-color: white;
+  overflow: none;
+  border: solid 2px grey;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.contener div .next:hover{
+  color: white;
+  background-color: grey; 
+  transition-duration: 0.2s;
+}
+.click{
+  padding-left: 20px;
+  color:red;
+  font-weight: 700;;
+}
+.active{
+  background-color: rgb(128, 136, 255);
+}
+.good{
+  background-color: rgb(1, 182, 1);
+}
+.bad{
+  background-color: rgb(255, 44, 44);
+}
