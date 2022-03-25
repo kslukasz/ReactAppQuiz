@@ -106,7 +106,6 @@ class App extends Component {
           {header}
           {contentPage}
 
-
           {/* alternatywny kod, działa tak samo ale mniej czytelny  */}
           {/* <div className='header'>
             <div>{this.createHeaderContent()}</div>
