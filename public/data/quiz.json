@@ -1,0 +1,92 @@
+{
+  "quest": [
+    {
+      "title":"Kontynentalne Stany Zjednoczone mają 4 strefy czasowe, możesz je nazwać?",
+     	"answer1":"Atlantyk, Nizinny, Południowy, Wschodni",
+      	"answer2":"Pacyfik, Górski, Środkowy, Wschodni",
+	"answer3":"Pacyfik, Dolny, Środkowy, Zachodni",
+	"answer4":"Atlantyk, Górski, Środkowy, Południowy",
+	"right": 2
+    },
+    {
+      "title":"Jak nazywało się tureckie miasto Stambuł przed 1930 rokiem?",
+     	"answer1":"Konstantynopol",
+      	"answer2":"Bizancjum",
+	"answer3":"Izmir",
+	"answer4":"Adana",
+	"right": 1
+    },
+    {
+      "title":"Z jakiego amerykańskiego miasta pochodzi zespół The Killers?",
+     	"answer1":"New York",
+      	"answer2":"Chicago",
+	"answer3":"Las Vegas",
+	"answer4":"Missoula",
+	"right": 3
+    },
+{
+      "title":"Ile razy Anglia wygrała mistrzostwa świata w piłce nożnej mężczyzn?",
+     	"answer1":"Raz",
+      	"answer2":"Dwa razy",
+	"answer3":"Trzy razy",
+	"answer4":"Cztery razy",
+	"right": 1
+    },
+{
+      "title":"Ile żon Henryka VIII nazywało się Katarzyna?",
+     	"answer1":"1",
+      	"answer2":"2",
+	"answer3":"3",
+	"answer4":"4",
+	"right": 3
+    },{
+      "title":"Który komik był drugim stałym gospodarzem Never Mind the Buzzcocks po Marku Lamarr?",
+     	"answer1":"Michał Kempa",
+      	"answer2":"Szymon Amstello",
+	"answer3":"Wołodymyr Zełenski",
+	"answer4":"Cezary Jurkiewicz",
+	"right": 2
+    },
+{
+      "title":"Jaka była stara nazwa batonika Snickers, zanim zmieniła się w 1990 roku?",
+     	"answer1":"BlackCake",
+      	"answer2":"Longer",
+	"answer3":"Mars",
+	"answer4":"Maraton",
+	"right": 4
+    },
+{
+      "title":"Który klub piłkarski gra swoje mecze domowe na Loftus Road?",
+     	"answer1":"AFC Wimbledon",
+      	"answer2":"Strażnicy Queen's Park",
+	"answer3":"Everton",
+	"answer4":"Northampton Town F.C.",
+	"right": 2
+    },
+{
+      "title":"Który kraj na świecie ma najwięcej kilometrów autostrad?",
+     	"answer1":"Chiny",
+      	"answer2":"USA",
+	"answer3":"Niemcy",
+	"answer4":"Indie",
+	"right": 1
+    },
+{
+      "title":"W którym roku The Beatles się rozeszli?",
+     	"answer1":"1985",
+      	"answer2":"1980",
+	"answer3":"1970",
+	"answer4":"1965",
+	"right": 3
+    },
+{
+      "title":"Według oficjalnej strony McDonalds, ile kalorii zawiera zwykły Big Mac?",
+     	"answer1":"508",
+      	"answer2":"345",
+	"answer3":"620",
+	"answer4":"480",
+	"right": 1
+    }
+
+   ]
+}

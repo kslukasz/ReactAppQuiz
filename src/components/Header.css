@@ -1,0 +1,62 @@
+/* header */
+.header{
+  display: flex;
+  justify-content: center;  
+  align-items: stretch; 
+  padding: 10px;
+  gap:10px;
+  flex-direction: row; 
+
+}
+.textarea{    
+  /* min-width: 270px;
+  max-width:270px; */ 
+  /* min-height: 80px;
+  max-height: 80px;    */
+  font-family:'Times New Roman', Times, serif;
+  font-size: 18px;
+  flex: 1.8;
+  resize: none;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px 2px rgb(168, 168, 168);
+  padding: 8px
+}
+.textarea:focus-visible{
+  outline: none;
+  background-color: rgb(247, 247, 247);  
+}
+.datelabel { 
+  flex: 1; 
+  box-shadow: 1px 1px 2px 2px rgb(168, 168, 168);
+  border-radius: 4px;
+  padding:8px;
+  display:flex;
+  flex-direction: column;  
+}
+.box2{
+  cursor: pointer;
+  width: 20px;
+  height: 20px; 
+}
+.checkbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add{    
+  flex: 0.7;
+  font-size: 20px; 
+  box-shadow: 1px 1px 2px 2px rgb(168, 168, 168);
+  background-color: white;
+  border:none;
+  border-radius: 4px;
+}
+.add:hover{
+   background-color: rgb(247, 247, 247);
+   cursor: pointer;
+}
+.add:active{
+  background-color: rgb(168, 184, 255);
+  cursor: pointer;
+}

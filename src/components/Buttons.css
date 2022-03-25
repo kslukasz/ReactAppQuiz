@@ -1,0 +1,122 @@
+/* buttons */
+.buttonbox{
+  display: flex;  
+  flex-direction: row;
+  gap:10px;
+  padding:10px; 
+  position: relative; 
+}
+.filter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex:1;
+  font-size: 20px; 
+  box-shadow: 1px 1px 2px 2px rgb(168, 168, 168);
+  background-color: white;
+  border:none;
+  border-radius: 4px;
+  height: 35px;
+  
+}
+.filter:hover{
+   background-color: rgb(168, 168, 168);
+   cursor: pointer;
+}
+.active{
+  background-color: rgb(168, 168, 168) ;
+}
+.ico{
+  width: 22px;
+  height: 22px;
+  transition: 0.2s;
+  padding-left:4px;
+  padding-right: 4px;  
+}
+/* .filter:hover .ico{
+  animation:anim linear 0.4s infinite ; 
+} */
+.rotate{
+   transform: rotate(-180deg);
+}
+.nodisplay{
+  display:none;
+}
+
+
+
+.boxinput{
+  display: flex;
+}
+/* .boxinput:hover .input{
+  flex:1.7;
+  width: auto; 
+  padding-right: 30px; 
+  color: black;
+} */
+.boxinput::before{  
+  content: "";
+    position: absolute;
+    z-index: 10;
+    width: 22px;
+    height: 22px;
+    right: 12px;
+    top: 17px;   
+    background-image: url(./search.svg);
+    background-size: 22px 22px;
+    opacity: 60%;   
+}
+.input {
+  display: flex;
+  position: relative;
+  flex:1.7;
+  min-width: 24px; 
+  width: auto;
+  box-shadow: 1px 1px 2px 2px rgb(168, 168, 168);
+  border:none;
+  border-radius: 4px;   
+  font-size: 17px;
+  padding-right: 30px;
+}
+.input:focus{
+  flex:1.7;
+  width: auto;
+  outline: none;
+  padding-right: 30px;
+  color: black;
+  background-color: rgb(247, 247, 247);
+}
+/* .input:hover{
+  display:inline;
+  flex:1.5;
+  max-width: auto;
+} */
+
+/* .search:hover .input{
+  flex:1.5;
+  max-width: auto;
+  /* opacity: 100%; */
+  /* background-color: chartreuse;  */
+/* } */ 
+
+/* .filter::before{
+  content: "";
+  position: absolute;  
+  background-color: red;
+  width: 25px;
+  height: 25px;
+  border: brown 1px solid;
+  /* top: 10px; */
+  /* left: 150px;   */
+/* } */ 
+
+
+
+@keyframes anim
+{
+  0% { transform:rotate(0); }
+  25% { transform:rotate(10deg); }
+  50% { transform:rotate(0deg); }
+  75% { transform:rotate(-10deg); }
+  100% { transform:rotate(0deg); }
+}
